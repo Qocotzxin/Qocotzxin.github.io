@@ -1,0 +1,44 @@
+{
+  "name": "github-app",
+  "version": "1.0.0",
+  "description": "Proyecto creado para la promoción en GL - Nivel 6 ()\u001b[D\u001brequerido",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --mode development --open ",
+    "build": "webpack --mode production",
+    "lint": "./node_modules/.bin/eslint ./src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Qocotzxin/github-app.git"
+  },
+  "author": "Cristian Etchebarne",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Qocotzxin/github-app/issues"
+  },
+  "homepage": "https://github.com/Qocotzxin/github-app#readme",
+  "dependencies": {
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-hot-loader": "^4.3.11"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "css-loader": "^1.0.0",
+    "eslint": "^5.6.0",
+    "eslint-plugin-react": "^7.11.1",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.8"
+  }
+}
