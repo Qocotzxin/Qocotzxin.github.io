@@ -30,7 +30,7 @@ module.exports = {
     hotOnly: true
   },
   plugins: [new webpack.HotModuleReplacementPlugin(), new HtmlWebpackPlugin({
-    template: "./src/index.html",
+    template: "./index.html",
     filename: "./index.html"
   })]
 };

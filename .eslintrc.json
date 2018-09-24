@@ -1,26 +1,31 @@
 {
   "env": {
     "browser": true,
-    "commonjs": true
+    "node": true
   },
   "settings": {
     "react": {
       "createClass": "createReactClass",
-      "pragma": "React", 
-      "version": "16.5.2", 
+      "pragma": "React",
+      "version": "16.5.2",
       "flowVersion": "0.53"
     },
     "propWrapperFunctions": ["forbidExtraProps"]
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "globals": {
+    "document": false
+  },
   "parserOptions": {
-    "ecmaVersion": 2018
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "rules": {
-    "no-empty-function": "error",
-    "indent": ["error", "tab"],
-    "linebreak-style": ["error", "windows"],
-    "quotes": ["error", "single"],
-    "semi": ["error", "always"]
-  }
+    "semi": 2,
+    "array-bracket-spacing": ["error"],
+    "object-curly-spacing": ["error", "always"]
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended"]
 }
