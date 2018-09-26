@@ -1,7 +1,8 @@
 {
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "settings": {
     "react": {
@@ -27,5 +28,5 @@
     "array-bracket-spacing": ["error"],
     "object-curly-spacing": ["error", "always"]
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended"]
+  "extends": ["eslint:recommended", "plugin:react/recommended", "jest-enzyme"]
 }

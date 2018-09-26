@@ -6,3 +6,12 @@ node_modules/
 
 dist/
 
+#Ignorar git
+
+.git/**
+
+#Ignorar los logs
+
+**/logs
+*.log
+*.logs
