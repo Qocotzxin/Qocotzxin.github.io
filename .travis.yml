@@ -13,4 +13,4 @@ deploy:
   keep-history: true
   github_token: $github_token
   on:
-    branch: develop
+    branch: master
