@@ -38,7 +38,7 @@
   "bugs": {
     "url": "https://github.com/Qocotzxin/github-app/issues"
   },
-  "homepage": "https://github.com/Qocotzxin/github-app",
+  "homepage": "https://github.com/Qocotzxin/github-app/",
   "dependencies": {
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
