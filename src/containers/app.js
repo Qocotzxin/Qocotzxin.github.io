@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
-import styles from "../../style/main.scss";
+import SearchBar from "../components/search-bar";
 
 class App extends Component {
   render() {
     return (
       <div>
-        <h1 className={styles.h1}> Github App! </h1>
+        <SearchBar />
       </div>
     );
   }
