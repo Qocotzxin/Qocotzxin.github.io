@@ -1,0 +1,12 @@
+.search__container {
+  padding: 5% 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .search__title {
+    text-align: center;
+    color: crimson;
+    margin-bottom: 1rem;
+  }
+}

@@ -40,9 +40,9 @@
   },
   "homepage": "https://github.com/Qocotzxin/github-app/",
   "dependencies": {
+    "lodash": "^4.17.11",
     "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "react-hot-loader": "^4.3.11"
+    "react-dom": "^16.5.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
@@ -64,6 +64,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
     "node-sass": "^4.9.3",
+    "react-hot-loader": "^4.3.11",
     "react-test-renderer": "^16.5.2",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",
