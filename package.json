@@ -4,30 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "test-watch": "jest --watch",
-    "test-coverage": "jest --coverage",
+    "test": "jest --coverage",
+    "jest-config": "jest --init",
     "start": "webpack-dev-server --mode development --open ",
     "build": "webpack --mode production",
     "lint": "./node_modules/.bin/eslint ./src"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.(jsx|js)?$": "<rootDir>/node_modules/babel-jest"
-    },
-    "testMatch": [
-      "**/test/?(*.)+(spec|test).js?(x)"
-    ],
-    "moduleNameMapper": {
-      "\\.css$": "identity-obj-proxy"
-    },
-    "collectCoverageFrom": [
-      "**/*.component.{js,jsx}",
-      "!**/node_modules/**"
-    ],
-    "coverageReporters": [
-      "text-summary"
-    ]
   },
   "repository": {
     "type": "git",
@@ -53,6 +34,7 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.2",
+    "babel-polyfill": "^6.26.0",
     "css-loader": "^1.0.0",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
@@ -63,6 +45,7 @@
     "html-webpack-plugin": "^3.2.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
+    "mini-css-extract-plugin": "^0.4.3",
     "node-sass": "^4.9.3",
     "react-hot-loader": "^4.3.11",
     "react-test-renderer": "^16.5.2",

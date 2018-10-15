@@ -1,6 +1,6 @@
-const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -14,22 +14,36 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
+        use: [
+          process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
+          "style-loader", "css-loader", "sass-loader"
+        ]
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ["file-loader"]
       }
-    ]
+    ],
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },
   output: {
     filename: "bundle.js"
   },
   devServer: {
-    contentBase: path.join(__dirname, "src/"),
+    contentBase: "./src",
     port: 3000,
     publicPath: "http://localhost:3000/",
     hotOnly: true
   },
-  plugins: [new webpack.HotModuleReplacementPlugin(), new HtmlWebpackPlugin({
-    template: "./index.html",
-    filename: "./index.html"
-  })]
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: "./index.html",
+      filename: "./index.html"
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].[hash].css",
+      chunkFilename: "[id].[hash].css"
+    })
+  ]
 };

@@ -8,7 +8,7 @@ Estructura:
 
     - CSS framework: Bootstrap
 
-    - Compiler: Babel
+    - Transpiler: Babel
 
     - Module Bundler: Webpack
 

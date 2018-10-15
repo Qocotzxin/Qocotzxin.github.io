@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
-import SearchBar from "../components/search-bar/search-bar";
+import SearchBar from "../components/SearchBar/SearchBar.jsx";
 import axios from "axios";
 import debounce from "lodash";
 

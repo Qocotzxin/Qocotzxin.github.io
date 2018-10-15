@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { hot } from "react-hot-loader";
-import "./search-bar.scss";
 
 class SearchBar extends Component {
   constructor(props) {
