@@ -3,7 +3,7 @@
 
 module.exports = {
   // All imported modules in your tests should be mocked automatically
-  // automock: false,
+  verbose: true,
 
   // Stop running tests after the first failure
   // bail: false,
@@ -30,20 +30,15 @@ module.exports = {
   coveragePathIgnorePatterns: ["\\\\node_modules\\\\"],
 
   // A list of reporter names that Jest uses when writing coverage reports
-  // coverageReporters: [
-  //   "json",
-  //   "text",
-  //   "lcov",
-  //   "clover"
-  // ],
+  coverageReporters: ["html", "text", "text-summary"],
 
   // An object that configures minimum threshold enforcement for coverage results
   coverageThreshold: {
     global: {
-      branches: 0,
-      functions: 0,
-      lines: 0,
-      statements: 0
+      branches: 90,
+      functions: 90,
+      lines: 90,
+      statements: 90
     }
   },
 
@@ -138,10 +133,10 @@ module.exports = {
   // testLocationInResults: false,
 
   // The glob patterns Jest uses to detect test files
-  // testMatch: [
+  // testMatch: 
   //   "**/__tests__/**/*.js?(x)",
   //   "**/?(*.)+(spec|test).js?(x)"
-  // ],
+  // ,
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   // testPathIgnorePatterns: [

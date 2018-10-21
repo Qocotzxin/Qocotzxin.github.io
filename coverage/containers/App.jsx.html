@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for containers/app.jsx</title>
+    <title>Code coverage report for containers/App.jsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="..\prettify.css" />
     <link rel="stylesheet" href="..\base.css" />
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="..\index.html">All files</a> / <a href="index.html">containers</a> app.jsx
+      <a href="..\index.html">All files</a> / <a href="index.html">containers</a> App.jsx
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">57.14% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/14</span>
+        <span class='fraction'>4/7</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">40% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/3</span>
+        <span class='fraction'>2/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">57.14% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/14</span>
+        <span class='fraction'>4/7</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -75,26 +75,20 @@
 30
 31
 32
-33
-34
-35
-36
-37</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+33</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -104,9 +98,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -115,34 +107,30 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import React, { Component } from "react";</span>
-<span class="cstat-no" title="statement not covered" >import { hot } from "react-hot-loader";</span>
-<span class="cstat-no" title="statement not covered" >import SearchBar from "../components/SearchBar/SearchBar.jsx";</span>
-<span class="cstat-no" title="statement not covered" >import axios from "axios";</span>
-<span class="cstat-no" title="statement not covered" >import debounce from "lodash";</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component } from "react";
+import { hot } from "react-hot-loader";
+import SearchBar from "../components/SearchBar/SearchBar";
+import axios from "axios";
 &nbsp;
 class App extends Component {
-<span class="fstat-no" title="function not covered" >  constructor(</span>props) <span class="cstat-no" title="statement not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >    super(props);</span>
-<span class="cstat-no" title="statement not covered" >    this.state = { users: [], selectedUser: "" };</span>
-<span class="cstat-no" title="statement not covered" >    this.githubUserSearch = this.githubUserSearch.bind(this);</span>
+  constructor(props) {
+    super(props);
+    this.state = { users: [], selectedUser: "" };
+    this.githubUserSearch = this.githubUserSearch.bind(this);
   }
 &nbsp;
-  githubUserSearch(term) <span class="cstat-no" title="statement not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >    debounce(</span>
-      axios
+<span class="fstat-no" title="function not covered" >  gi</span>thubUserSearch(term) {
+<span class="cstat-no" title="statement not covered" >      axios</span>
         .get(
           `https://api.github.com/search/users?q=${term}+in:login+in:fullname+in:email`,
           { headers: { "User-Agent": "Qocotzxin" } }
         )
-        .then(<span class="fstat-no" title="function not covered" >response<span class="cstat-no" title="statement not covered" > =&gt; this.setState({ users: response.data.items }))</span></span>
-        .catch(<span class="fstat-no" title="function not covered" >error<span class="cstat-no" title="statement not covered" > =&gt; console.warn(error)),</span></span>
-      400
-    );
+        .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; <span class="cstat-no" title="statement not covered" >this.setState({ users: response.data.items }))</span>
+        .catch(<span class="fstat-no" title="function not covered" >er</span>ror =&gt; <span class="cstat-no" title="statement not covered" >console.warn(error))</span>;
   }
 &nbsp;
   render() {
-<span class="cstat-no" title="statement not covered" >    return (</span>
+    return (
       &lt;div&gt;
         &lt;SearchBar onSearchTermChange={this.githubUserSearch} /&gt;
       &lt;/div&gt;
@@ -157,7 +145,7 @@ export default hot(module)(App);
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Oct 15 2018 15:46:43 GMT-0300 (SA Eastern Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Oct 21 2018 17:45:44 GMT-0300 (Argentina Standard Time)
 </div>
 </div>
 <script src="..\prettify.js"></script>
