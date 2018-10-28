@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { hot } from "react-hot-loader";
+import React, { Component } from 'react';
+import { hot } from 'react-hot-loader';
 
 class SearchBar extends Component {
   constructor(props) {
     super(props);
-    this.state = { term: "" };
+    this.state = { term: '' };
   }
   render() {
     return (

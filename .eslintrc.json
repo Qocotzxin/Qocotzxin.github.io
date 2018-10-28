@@ -2,7 +2,8 @@
   "env": {
     "browser": true,
     "node": true,
-    "jest": true
+    "jest": true,
+    "es6": true
   },
   "settings": {
     "react": {
@@ -27,8 +28,12 @@
     "semi": 2,
     "array-bracket-spacing": ["error"],
     "object-curly-spacing": ["error", "always"],
-    "no-console":"off",
-    "react/prop-types": [0]
+    "no-console": "off",
+    "react/prop-types": [0],
+    "quotes": [
+      "error",
+      "single"
+    ]
   },
   "extends": ["eslint:recommended", "plugin:react/recommended", "jest-enzyme"]
 }
