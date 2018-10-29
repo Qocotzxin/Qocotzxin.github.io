@@ -42,15 +42,5 @@ describe('Objetivo: verificar cambios de estado del componente', () => {
     instance.githubUserSearch(searchTerm)
     .then(val => console.log(val))
     .catch(error => console.error(error));
-    // app.update();
-    // console.log(app.state('users'));
-    // expect(app.state('users').length).toBe(1);
-    // expect(app.state('users').length).toBe(1);
   });
-
-  // test('Si no hay coincidencias con la búsqueda, el estado users debe estar vacío', () => {
-  //   searchTerm = 'Otro';
-  //   app.instance().githubUserSearch(searchTerm);
-  //   expect(app.state('users').length).toBe(1);
-  // });
 });
