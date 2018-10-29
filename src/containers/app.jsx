@@ -22,12 +22,24 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div className="app">
-        <SearchBar onSearchTermChange={debounce(this.githubUserSearch, 500)} />
-        <UsersList users={this.state.users}></UsersList>
-      </div>
-    );
+    if (this.state.users.length) {
+      return (
+        <div className="app">
+          <SearchBar
+            onSearchTermChange={debounce(this.githubUserSearch, 500)}
+          />
+          <UsersList users={this.state.users} />
+        </div>
+      );
+    } else {
+      return (
+        <div className="app">
+          <SearchBar
+            onSearchTermChange={debounce(this.githubUserSearch, 500)}
+          />
+        </div>
+      );
+    }
   }
 }
 

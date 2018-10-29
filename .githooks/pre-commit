@@ -1,0 +1,42 @@
+#!/bin/sh
+
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep ".jsx\{0,1\}$")
+ESLINT="$(git rev-parse --show-toplevel)/node_modules/.bin/eslint"
+
+
+if [[ "$STAGED_FILES" = "" ]]; then
+  exit 0
+fi
+
+PASS=true
+
+echo "\nValidating Javascript:\n"
+
+# Check for eslint
+if [[ ! -x "$ESLINT" ]]; then
+  echo "\tPlease install ESlint (npm i --save --save-exact --dev eslint)"
+  exit 1
+fi
+
+for FILE in $STAGED_FILES
+do
+  "$ESLINT" "$FILE"
+
+  if [[ "$?" == 0 ]]; then
+    echo "\tESLint Passed: $FILE"
+  else
+    echo "\tESLint Failed: $FILE"
+    PASS=false
+  fi
+done
+
+echo "\nJavascript validation completed!\n"
+
+if ! $PASS; then
+  echo "COMMIT FAILED: Your commit contains files that do not comply with ESLint rules. Please fix the ESLint errors and try again.\n"
+  exit 1
+else
+  echo "COMMIT SUCCEEDED\n"
+fi
+
+exit $?

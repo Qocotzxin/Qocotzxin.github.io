@@ -4,7 +4,6 @@ import { hot } from 'react-hot-loader';
 
 const UsersList = props => {
   const usersItems = props.users.map(user => {
-    console.log(user);
     return (
       <li key={user.id} user={user}>
         <div>
