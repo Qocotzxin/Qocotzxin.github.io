@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
-import SearchBar from '../components/SearchBar/SearchBar';
+import SearchBar from '../../components/SearchBar/SearchBar';
 import axios from 'axios';
 import { debounce } from 'lodash';
-import UsersList from '../components/UsersList/UsersList';
+import UsersList from '../../components/UsersList/UsersList';
 
 class App extends Component {
   constructor(props) {
