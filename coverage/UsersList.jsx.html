@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for components/UsersList/UsersList.jsx</title>
+    <title>Code coverage report for UsersList.jsx</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="..\..\prettify.css" />
-    <link rel="stylesheet" href="..\..\base.css" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(..\..\sort-arrow-sprite.png);
+            background-image: url(sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="..\..\index.html">All files</a> / <a href="index.html">components/UsersList</a> UsersList.jsx
+      <a href="index.html">All files</a> UsersList.jsx
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">25% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/5</span>
+        <span class='fraction'>1/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/3</span>
+        <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">25% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/5</span>
+        <span class='fraction'>1/4</span>
       </div>
     </div>
   </div>
@@ -77,32 +77,13 @@
 32
 33
 34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+35</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -130,49 +111,38 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component } from 'react';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import { hot } from 'react-hot-loader';
-import LazyLoad from 'react-lazyload';
+// import UsersListItem from './UsersListItem';
 &nbsp;
-class UsersList extends Component {
-<span class="fstat-no" title="function not covered" >  co</span>nstructor(props) {
-<span class="cstat-no" title="statement not covered" >    super(props);</span>
-  }
-&nbsp;
-<span class="fstat-no" title="function not covered" >  re</span>nder() {
-    const { users } = <span class="cstat-no" title="statement not covered" >this.props;</span>
-&nbsp;
-    const usersItems = <span class="cstat-no" title="statement not covered" >users.map(<span class="fstat-no" title="function not covered" >us</span>er =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      return (</span>
-        &lt;LazyLoad height={95} key={user.id} once&gt;
-          &lt;li user={user}&gt;
-            &lt;div&gt;
-              &lt;img src={user.avatar_url} /&gt;
-            &lt;/div&gt;
-            &lt;div&gt;
-              &lt;strong&gt;{user.login}&lt;/strong&gt;
-            &lt;/div&gt;
-            &lt;div&gt;
-              &lt;strong&gt;{user.score}&lt;/strong&gt;
-            &lt;/div&gt;
-          &lt;/li&gt;
-        &lt;/LazyLoad&gt;
-      );
-    });
-&nbsp;
+const UsersList = <span class="fstat-no" title="function not covered" >pr</span>ops =&gt; {
+  const usersItems = <span class="cstat-no" title="statement not covered" >props.users.map(<span class="fstat-no" title="function not covered" >us</span>er =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    return (</span>
-      &lt;div className="list"&gt;
-        &lt;div className="header"&gt;
-          &lt;h3&gt;Avatar&lt;/h3&gt;
-          &lt;h3&gt;Usuario&lt;/h3&gt;
-          &lt;h3&gt;Puntaje&lt;/h3&gt;
+      &lt;li key={user.id} user={user}&gt;
+        &lt;div&gt;
+          &lt;img className="media-object" src={user.avatar_url} /&gt;
         &lt;/div&gt;
-        &lt;ul className="list-group"&gt;{usersItems}&lt;/ul&gt;
-      &lt;/div&gt;
+        &lt;div&gt;
+          &lt;strong&gt;{user.login}&lt;/strong&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;strong&gt;{user.score}&lt;/strong&gt;
+        &lt;/div&gt;
+      &lt;/li&gt;
     );
-  }
-}
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return (</span>
+    &lt;div className="list"&gt;
+      &lt;div className="header"&gt;
+        &lt;h3&gt;Avatar&lt;/h3&gt;
+        &lt;h3&gt;Usuario&lt;/h3&gt;
+        &lt;h3&gt;Puntaje&lt;/h3&gt;
+      &lt;/div&gt;
+      &lt;ul className="list-group"&gt;{usersItems}&lt;/ul&gt;
+    &lt;/div&gt;
+  );
+};
 &nbsp;
 export default hot(module)(UsersList);
 &nbsp;</pre></td></tr>
@@ -181,10 +151,10 @@ export default hot(module)(UsersList);
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Oct 30 2018 23:56:07 GMT-0300 (Argentina Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Oct 30 2018 21:45:32 GMT-0300 (Argentina Standard Time)
 </div>
 </div>
-<script src="..\..\prettify.js"></script>
+<script src="prettify.js"></script>
 <script>
 window.onload = function () {
         if (typeof prettyPrint === 'function') {
@@ -192,6 +162,6 @@ window.onload = function () {
         }
 };
 </script>
-<script src="..\..\sorter.js"></script>
+<script src="sorter.js"></script>
 </body>
 </html>

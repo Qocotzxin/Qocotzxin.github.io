@@ -1,34 +1,44 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
-// import UsersListItem from './UsersListItem';
+import LazyLoad from 'react-lazyload';
 
-const UsersList = props => {
-  const usersItems = props.users.map(user => {
+class UsersList extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const { users } = this.props;
+
+    const usersItems = users.map(user => {
+      return (
+        <LazyLoad height={95} key={user.id} once>
+          <li user={user}>
+            <div>
+              <img src={user.avatar_url} />
+            </div>
+            <div>
+              <strong>{user.login}</strong>
+            </div>
+            <div>
+              <strong>{user.score}</strong>
+            </div>
+          </li>
+        </LazyLoad>
+      );
+    });
+
     return (
-      <li key={user.id} user={user}>
-        <div>
-          <img className="media-object" src={user.avatar_url} />
+      <div className="list">
+        <div className="header">
+          <h3>Avatar</h3>
+          <h3>Usuario</h3>
+          <h3>Puntaje</h3>
         </div>
-        <div>
-          <strong>{user.login}</strong>
-        </div>
-        <div>
-          <strong>{Math.round(user.score * 100) / 100}</strong>
-        </div>
-      </li>
-    );
-  });
-
-  return (
-    <div className="list">
-      <div className="header">
-        <h3>Avatar</h3>
-        <h3>Usuario</h3>
-        <h3>Puntaje</h3>
+        <ul className="list-group">{usersItems}</ul>
       </div>
-      <ul className="list-group">{usersItems}</ul>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default hot(module)(UsersList);

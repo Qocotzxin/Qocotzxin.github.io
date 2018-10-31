@@ -1,3 +1,11 @@
+/* En las resoluciones más chicas la lista ocupa
+ siempre el 100% de ancho.*/
+@media only screen and (max-width: 361px) {
+  .list {
+    width: 100%;
+  }
+}
+
 .list {
   display: flex;
   flex-direction: column;
@@ -8,6 +16,7 @@
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
   }
+
   li {
     cursor: pointer;
     display: grid;
