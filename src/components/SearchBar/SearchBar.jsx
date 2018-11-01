@@ -8,7 +8,7 @@ class SearchBar extends Component {
   }
   render() {
     return (
-      <div className="search__container">
+      <div className="search">
         <h2 className="search__title">Buscador de usuarios de Github</h2>
         <input
           name="Buscador"

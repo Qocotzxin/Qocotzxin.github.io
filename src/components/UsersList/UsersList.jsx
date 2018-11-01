@@ -13,15 +13,19 @@ class UsersList extends Component {
     const usersItems = users.map(user => {
       return (
         <LazyLoad height={95} key={user.id} once>
-          <li user={user}>
+          <li
+            user={user}
+            onClick={() => this.showUserPage(user)}
+            title={user.login}
+            className="userslist__item">
             <div>
               <img src={user.avatar_url} />
             </div>
             <div>
-              <strong>{user.login}</strong>
+              <p>{user.login}</p>
             </div>
             <div>
-              <strong>{user.score}</strong>
+              <p>{user.score}</p>
             </div>
           </li>
         </LazyLoad>
@@ -29,15 +33,19 @@ class UsersList extends Component {
     });
 
     return (
-      <div className="list">
-        <div className="header">
-          <h3>Avatar</h3>
-          <h3>Usuario</h3>
-          <h3>Puntaje</h3>
+      <div className="userslist">
+        <div className="userslist__header">
+          <h5>Avatar</h5>
+          <h5>Usuario</h5>
+          <h5>Puntaje</h5>
         </div>
         <ul className="list-group">{usersItems}</ul>
       </div>
     );
+  }
+
+  showUserPage({ html_url }) {
+    window.open(html_url, '_blank');
   }
 }
 
