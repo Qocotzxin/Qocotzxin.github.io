@@ -13,17 +13,21 @@ module.exports = {
         options: { presets: ['@babel/preset-env', '@babel/preset-react'] }
       },
       {
-        test: /\.scss$/,
+        test: /\.(css|scss)$/,
         use: [
-          process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'style-loader', 'css-loader', 'sass-loader'
+          process.env.NODE_ENV !== 'production'
+            ? 'style-loader'
+            : MiniCssExtractPlugin.loader,
+          'style-loader',
+          'css-loader',
+          'sass-loader'
         ]
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: ['file-loader']
       }
-    ],
+    ]
   },
   resolve: { extensions: ['*', '.js', '.jsx'] },
   output: {
@@ -32,7 +36,7 @@ module.exports = {
   devServer: {
     port: 3000,
     publicPath: 'http://localhost:3000/',
-    hotOnly: true
+    hot: true
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

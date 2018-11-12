@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
 import LazyLoad from 'react-lazyload';
 
 class UsersList extends Component {
@@ -7,7 +6,7 @@ class UsersList extends Component {
     super(props);
   }
 
-  render() {
+  render = () => {
     const { users } = this.props;
 
     const usersItems = users.map(user => {
@@ -44,9 +43,9 @@ class UsersList extends Component {
     );
   }
 
-  showUserPage({ html_url }) {
+  showUserPage = ({ html_url }) => {
     window.open(html_url, '_blank');
   }
 }
 
-export default hot(module)(UsersList);
+export default UsersList;

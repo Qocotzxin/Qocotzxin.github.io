@@ -1,46 +1,48 @@
+.userslist {
+  display: flex;
+  flex-direction: column;
+}
+
+.userslist__header {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+}
+
+.userslist__item {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  padding: 6px;
+
+  &:hover {
+    transition: background-color 0.2s, color 0.2s, border 0.2s, font-size 0.2s;
+    background-color: rgba(82, 139, 255, 0.5);
+    color: white;
+    border: 1px solid transparent;
+    font-size: 1.1rem;
+
+    img {
+      transition: border-radius 0.2s;
+      border: none;
+      border-radius: 6px;
+    }
+  }
+
+  img {
+    width: 64px;
+    border: 3px solid rgba(82, 139, 255, 0.5);
+  }
+}
+
 /* En las resoluciones mayores a 360px de ancho
  la lista ocupa siempre el 60% de ancho.*/
 @media only screen and (min-width: 361px) {
   .userslist {
     width: 60%;
-  }
-}
-
-.userslist {
-  display: flex;
-  flex-direction: column;
-
-  .userslist__header {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-items: center;
-  }
-
-  .userslist__item {
-    cursor: pointer;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-items: center;
-    align-items: center;
-    border: 1px solid lightgrey;
-    border-radius: 5px;
-    padding: 6px;
-
-    &:hover {
-      transition: background-color 0.2s, color 0.2s, border 0.2s, font-size 0.2s;
-      background-color: rgba(82, 139, 255, 0.5);
-      color: white;
-      border: 1px solid transparent;
-      font-size: 1.1rem;
-
-      img {
-        border: none;
-      }
-    }
-
-    img {
-      width: 64px;
-      border: 1px solid rgba(82, 139, 255, 0.5);
-    }
   }
 }

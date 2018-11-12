@@ -18,23 +18,23 @@
     "document": false
   },
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 2018,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true,
-      "experimentalDecorators": true
+      "experimentalDecorators": true,
+      "classProperties": true
     }
   },
   "rules": {
     "semi": 2,
+    "strict": 0,
     "array-bracket-spacing": ["error"],
     "object-curly-spacing": ["error", "always"],
     "no-console": "off",
     "react/prop-types": [0],
-    "quotes": [
-      "error",
-      "single"
-    ]
+    "quotes": ["error", "single"]
   },
+  "parser": "babel-eslint",
   "extends": ["eslint:recommended", "plugin:react/recommended", "jest-enzyme"]
 }

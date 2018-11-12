@@ -2,17 +2,17 @@ Proyecto de promoción (nivel 6)
 
 ## Autor: Cristian Etchebarne
 
-## Para trabajar en el repositorio:
+### Para trabajar en el repositorio:
 
-### 1 - Clonar el proyecto: git clone https://github.com/Qocotzxin/Qocotzxin.github.io.git
+1 - Clonar el proyecto: git clone https://github.com/Qocotzxin/Qocotzxin.github.io.git
 
-### 2 - Instalar dependencias: npm install
+2 - Instalar dependencias: npm install
 
-### 3 - Aplicar git hooks: git config --global init.templatedir '.githooks' 
+3 - Aplicar git hooks: git config --global init.templatedir '.githooks' 
 
-### 4 - Correr la aplicación: npm start
+4 - Correr la aplicación: npm start
 
-### 5 - Correr los test: npm test
+5 - Correr los test: npm test
 
 ## Estructura:
 

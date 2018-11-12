@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -23,10 +22,10 @@ class SearchBar extends Component {
     );
   }
 
-  onInputChange(term) {
+  onInputChange = (term) => {
     this.setState({ term: term });
     this.props.onSearchTermChange(term);
   }
 }
 
-export default hot(module)(SearchBar);
+export default SearchBar;
