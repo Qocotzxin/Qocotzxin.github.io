@@ -1,0 +1,30 @@
+.repos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.repos__header {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+}
+
+.repos__item {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+  align-items: center;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  padding: 6px;
+
+  &:hover {
+    transition: background-color 0.2s, color 0.2s, border 0.2s, font-size 0.2s;
+    background-color: rgba(82, 139, 255, 0.5);
+    color: white;
+    border: 1px solid transparent;
+    font-size: 1.1rem;
+  }
+}

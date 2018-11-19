@@ -1,11 +1,26 @@
 import React, { Component } from 'react';
 
+/**
+ * @class
+ * Input que dispara la búsqueda de usuarios de Github
+ */
 class SearchBar extends Component {
+  /**
+   * @constructor
+   * @param {*} props
+   * Inicializa el estado 'term' del componente.
+   */
   constructor(props) {
     super(props);
     this.state = { term: '' };
   }
-  render() {
+
+  /**
+   * @function
+   * @returns {void}
+   * Retorna el html del componente
+   */
+  render = () => {
     return (
       <div className="search">
         <h2 className="search__title">Buscador de usuarios de Github</h2>
@@ -22,6 +37,12 @@ class SearchBar extends Component {
     );
   }
 
+  /**
+   * @function
+   * @param {string} term
+   * @returns {void}
+   * Cambia el estado del componente y le avisa al padre (App)
+   */
   onInputChange = (term) => {
     this.setState({ term: term });
     this.props.onSearchTermChange(term);

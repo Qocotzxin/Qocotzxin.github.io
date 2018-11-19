@@ -1,0 +1,56 @@
+Log de lecturas complementarias para la promoción:
+
+## Metodologías CSS:
+
+- Qué son y para que sirven las metodologías CSS.
+- Qué es BEM.
+- Por qué BEM ayuda al debugging en CSS.
+- Como son las reglas de nombrado de clases.
+    - Bloques, elementos y modificadores.
+- Qué otras metodologías existen para aplicar en CSS.
+    - Qué es OOCSS.
+    - Beneficios y contras de OOCSS
+
+Referencias:
+
+- http://getbem.com/naming/
+- https://medium.com/@dannyhuang_75970/what-is-bem-and-why-you-should-use-it-in-your-project-ab37c6d10b79
+- https://www.smashingmagazine.com/2014/07/bem-methodology-for-small-projects/
+- https://medium.freecodecamp.org/css-naming-conventions-that-will-save-you-hours-of-debugging-35cea737d849
+- https://www.smashingmagazine.com/2011/12/an-introduction-to-object-oriented-css-oocss/
+- https://github.com/stubbornella/oocss/wiki
+
+## Pseudo-clases:
+
+- Qué son las pseudo-clases.
+    - Lista de pseudo-clases.
+- Qué son los pseudo-elementos.
+    - Lista de pseudo-elementos.
+
+Referencias:
+
+- https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes
+- https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements
+- https://css-tricks.com/pseudo-class-selectors/
+
+## EM vs REM
+
+- Unidades absolutas y relativas.
+    - Beneficios de las unidades relativas.
+- Qué es EM y qué es REM.
+
+Referencias:
+
+- https://www.w3schools.com/cssref/css_units.asp
+- https://j.eremy.net/confused-about-rem-and-em/
+- https://zellwk.com/blog/rem-vs-em/
+
+## Normalize css vs Reset css
+
+ - Qué son normalize y reset css.
+ - Diferencias, pros y contras entre ambos.
+
+Referencias:
+
+- https://pineco.de/a-brief-about-css-reset-and-normalize/
+- http://nicolasgallagher.com/about-normalize-css/

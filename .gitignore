@@ -2,9 +2,17 @@
 
 node_modules/
 
+# Ignorar code coverage
+
+coverage/
+
 # Ignorar dist
 
 dist/
+
+# Ignorar documentación
+
+docs/
 
 #Ignorar git
 
@@ -19,3 +27,4 @@ dist/
 **/logs
 *.log
 *.logs
+!lecturas_adicionales.log

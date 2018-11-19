@@ -10,9 +10,11 @@ Proyecto de promoción (nivel 6)
 
 3 - Aplicar git hooks: git config --global init.templatedir '.githooks' 
 
-4 - Correr la aplicación: npm start
+4 - Correr la aplicación: npm start (Por default corre en localhost:3000)
 
-5 - Correr los test: npm test
+5 - Correr los test: npm test (Esto también genera los reportes a los cuales se puede acceder mediante localhost:3000/coverage)
+
+6 - Generar documentación: npm run documentation (Para acceder se puede ir a localhost:3000/docs)
 
 ## Estructura:
 
@@ -32,10 +34,10 @@ Proyecto de promoción (nivel 6)
 
     - Test environment: Jest + Enzyme
 
+    - Documentación: JSDoc
+
 ## Diseño de arquitectura:
 
     - El proyecto se realizará aplicando una arquitectura de componentes con el objetivo de aplicar las nuevas normas de desarrollo que aportan escalabilidad y modularidad en entorno Javascript.
 
     - El objetivo de aplicar modularidad en el proyecto es principalmente aplicar el concepto de "división de responsablidades", donde cada pequeña pieza tiene una función clara y definida. Esto genera un desarrollo mucho más claro, dividido en piezas de menor tamaño, las cuales pueden ser testeadas y debugueadas con mayor rapidez y claridad. Es decir, la detección de errores se torna mucho más ágil en una arquitectura de componentes.
-
-## 
