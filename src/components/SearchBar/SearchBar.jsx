@@ -8,7 +8,8 @@ class SearchBar extends Component {
   /**
    * @constructor
    * @param {*} props
-   * Inicializa el estado 'term' del componente.
+   * Inicializa el estado { term } del componente.
+   * { term } contiene el string ingresado para comenzar la búsqueda.
    */
   constructor(props) {
     super(props);

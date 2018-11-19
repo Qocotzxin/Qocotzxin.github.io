@@ -1,23 +1,52 @@
 import React, { Component } from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import UsersList from '../../components/UsersList/UsersList';
+import ReposList from '../../components/ReposList/ReposList';
 import axios from 'axios';
 import { debounce } from 'lodash';
-import UsersList from '../../components/UsersList/UsersList';
 import { RiseLoader } from 'react-spinners';
 
+/**
+ * @class
+ * Contenedor general de la aplicación
+ */
 class App extends Component {
+  /**
+   * @constructor
+   * @param {*} props
+   * Inicializa el estado { users, loading } del componente.
+   * { users } contiene los usuarios devueltos de la búsuqeda y
+   * { loading } determina la aparición del spinner.
+   */
   constructor(props) {
     super(props);
-    this.state = { users: [], selectedUser: '', loading: false };
+    this.state = { users: [], loading: false };
+    this.githubUserSearch = this.githubUserSearch.bind(this);
   }
 
-  setSearch = () => {
+  /**
+   * @function
+   * @returns {void}
+   * Cambia el estado a { loading: true } e invoca 
+   * el método de búsqueda con parámetro
+   */
+  setSearch = term => {
     this.setState({ loading: true });
-    debounce(this.githubUserSearch, 500);
+    this.search(term);
   };
 
-  githubUserSearch = (term) => {
-    this.setState({ loading: true });
+  /**
+   * Después de 0,5 segundos ejecuta la función githubSearch
+   */
+  search = debounce(this.githubUserSearch, 500);
+
+  /**
+   * @function
+   * @returns {void}
+   * Ejecuta la búsqueda de usuarios de github
+   * y modifica el estado {users, loading}
+   */
+  githubUserSearch(term) {
     return axios
       .get(
         `https://api.github.com/search/users?q=${term}+in:login+in:fullname+in:email`
@@ -28,13 +57,19 @@ class App extends Component {
       .catch(() => this.setState({ users: [], loading: false }));
   }
 
+  /**
+   * @function
+   * @returns {void}
+   * Retorna el contenido de la aplicación que incluye
+   * SearchBar (barra de búsqueda), RiseLoader (spinner),
+   * UsersList (lista de usuarios si hay resultados) y
+   * ReposList (lista de repositorios del usuario seleccionado)
+   */
   render = () => {
     if (this.state.loading) {
       return (
         <div className="app">
-          <SearchBar
-            onSearchTermChange={debounce(this.githubUserSearch, 500)}
-          />
+          <SearchBar onSearchTermChange={this.setSearch} />
           <RiseLoader
             className={'spinner'}
             sizeUnit={'px'}
@@ -49,7 +84,10 @@ class App extends Component {
         return (
           <div className="app">
             <SearchBar onSearchTermChange={this.setSearch} />
-            <UsersList users={this.state.users} />
+            <UsersList
+              users={this.state.users}
+              onUserSelection={this.showRepos}
+            />
           </div>
         );
       }
@@ -61,7 +99,17 @@ class App extends Component {
         </div>
       );
     }
-  }
+  };
+
+  /**
+   * @function
+   * @param {*} repoData
+   * @returns {JSX}
+   * Retorna la lista de repositorios del usuario seleccionado.
+   */
+  showRepos = repoData => {
+    return <ReposList data={repoData} />;
+  };
 }
 
 export default App;
