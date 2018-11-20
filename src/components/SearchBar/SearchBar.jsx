@@ -5,6 +5,8 @@ import React, { Component } from 'react';
  * Input que dispara la búsqueda de usuarios de Github
  */
 class SearchBar extends Component {
+  isMounted = false;
+
   /**
    * @constructor
    * @param {*} props
@@ -14,6 +16,14 @@ class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = { term: '' };
+  }
+
+  componentDidMount() {
+    this.isMounted = true;
+  }
+
+  componentWillUnmount() {
+    this.isMounted = false;
   }
 
   /**
@@ -36,7 +46,7 @@ class SearchBar extends Component {
         />
       </div>
     );
-  }
+  };
 
   /**
    * @function
@@ -44,10 +54,12 @@ class SearchBar extends Component {
    * @returns {void}
    * Cambia el estado del componente y le avisa al padre (App)
    */
-  onInputChange = (term) => {
-    this.setState({ term: term });
+  onInputChange = term => {
+    if (this.isMounted) {
+      this.setState({ term: term });
+    }
     this.props.onSearchTermChange(term);
-  }
+  };
 }
 
 export default SearchBar;

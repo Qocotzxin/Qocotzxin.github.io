@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import UsersList from '../../components/UsersList/UsersList';
-import ReposList from '../../components/ReposList/ReposList';
 import axios from 'axios';
 import { debounce } from 'lodash';
 import { RiseLoader } from 'react-spinners';
+import ReposList from '../../components/ReposList/ReposList';
 
 /**
  * @class
  * Contenedor general de la aplicación
  */
 class App extends Component {
+  /**
+   * @property {boolean}
+   * Determina si el component está en un ciclo de vida activo
+   * para evitar leaks con los cambios de estado.
+   */
+  isMounted = false;
+
+  /**
+   * @property {void}
+   * Después de 0,5 segundos ejecuta la función githubSearch.
+   */
+  search = debounce(this.githubUserSearch, 500);
+
   /**
    * @constructor
    * @param {*} props
@@ -20,14 +33,22 @@ class App extends Component {
    */
   constructor(props) {
     super(props);
-    this.state = { users: [], loading: false };
+    this.state = { users: [], loading: false, repos: [] };
     this.githubUserSearch = this.githubUserSearch.bind(this);
+  }
+
+  componentDidMount() {
+    this.isMounted = true;
+  }
+
+  componentWillUnmount() {
+    this.isMounted = false;
   }
 
   /**
    * @function
    * @returns {void}
-   * Cambia el estado a { loading: true } e invoca 
+   * Cambia el estado a { loading: true } e invoca
    * el método de búsqueda con parámetro
    */
   setSearch = term => {
@@ -36,12 +57,7 @@ class App extends Component {
   };
 
   /**
-   * Después de 0,5 segundos ejecuta la función githubSearch
-   */
-  search = debounce(this.githubUserSearch, 500);
-
-  /**
-   * @function
+   * @method
    * @returns {void}
    * Ejecuta la búsqueda de usuarios de github
    * y modifica el estado {users, loading}
@@ -51,11 +67,44 @@ class App extends Component {
       .get(
         `https://api.github.com/search/users?q=${term}+in:login+in:fullname+in:email`
       )
-      .then(response =>
-        this.setState({ users: response.data.items, loading: false })
-      )
-      .catch(() => this.setState({ users: [], loading: false }));
+      .then(response => {
+        if (this.isMounted) {
+          this.setState({ users: response.data.items, loading: false });
+        }
+      })
+      .catch(() => {
+        if (this.isMounted) {
+          this.setState({ users: [], loading: false });
+        }
+      });
   }
+
+  showRepos = repos_url => {
+    if (this.isMounted) {
+      this.setState({ loading: true });
+    }
+
+    this.getRepos(repos_url);
+  };
+
+  /**
+   * @function
+   * @param {string} repos_url
+   * Realiza la búsqueda de repositorios del usuario
+   * y los comunica al padre (App)
+   */
+  getRepos = repos_url => {
+    return axios
+      .get(`${repos_url}`)
+      .then(response => {
+        if (this.isMounted) {
+          this.setState({ loading: false, repos: response.data });
+        }
+      })
+      .catch(error => {
+        throw error;
+      });
+  };
 
   /**
    * @function
@@ -81,15 +130,19 @@ class App extends Component {
       );
     } else {
       if (this.state.users.length) {
-        return (
-          <div className="app">
-            <SearchBar onSearchTermChange={this.setSearch} />
-            <UsersList
-              users={this.state.users}
-              onUserSelection={this.showRepos}
-            />
-          </div>
-        );
+        if (!this.state.repos.length) {
+          return (
+            <div className="app">
+              <SearchBar onSearchTermChange={this.setSearch} />
+              <UsersList
+                users={this.state.users}
+                onUserSelection={this.showRepos}
+              />
+            </div>
+          );
+        } else {
+          return <ReposList data={this.state.repos} />;
+        }
       }
 
       return (
@@ -99,16 +152,6 @@ class App extends Component {
         </div>
       );
     }
-  };
-
-  /**
-   * @function
-   * @param {*} repoData
-   * @returns {JSX}
-   * Retorna la lista de repositorios del usuario seleccionado.
-   */
-  showRepos = repoData => {
-    return <ReposList data={repoData} />;
   };
 }
 

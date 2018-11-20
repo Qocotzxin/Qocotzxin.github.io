@@ -1,23 +1,18 @@
+import 'normalize.css';
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import App from './containers/App/App';
-import 'normalize.css';
 import '../style/main.scss';
+import ReposList from './components/ReposList/ReposList';
+import App from './containers/App/App';
 
 ReactDOM.render(
   <Fragment>
     <BrowserRouter>
-      <App>
-        <div>
-          <Switch>
-            <Route path="/coverage" />
-          </Switch>
-          <Switch>
-            <Route path="/docs" />
-          </Switch>
-        </div>
-      </App>
+        <Switch>
+          <Route path="/" component={App}/>
+          <Route path="/repos/:id" component={ReposList} />
+        </Switch>
     </BrowserRouter>
   </Fragment>,
   document.getElementById('container')

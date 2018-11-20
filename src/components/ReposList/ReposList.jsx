@@ -1,11 +1,9 @@
+import moment from 'moment';
 import React from 'react';
 import LazyLoad from 'react-lazyload';
-import moment from 'moment';
 
 const ReposList = props => {
   const { data } = props;
-
-  console.log(props);
 
   const userRepos = data.map(repo => {
     return (
@@ -37,7 +35,7 @@ const ReposList = props => {
 
   return (
     <div className="repos">
-      <h3>Cantidad de repositorios: {this.props.data.length}</h3>
+      <h3>Cantidad de repositorios: {data.length}</h3>
       <div className="repos__header">
         <p>Nombre completo</p>
         <p>Fecha de creación</p>

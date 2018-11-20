@@ -1,6 +1,5 @@
 import React from 'react';
 import LazyLoad from 'react-lazyload';
-import axios from 'axios';
 
 /**
  * @function
@@ -16,21 +15,6 @@ const UsersList = props => {
   const { users } = props;
 
   /**
-   * @function
-   * @param {string} repos_url
-   * Realiza la búsqueda de repositorios del usuario
-   * y los comunica al padre (App)
-   */
-  const showUserPage = ({ repos_url }) => {
-    return axios
-      .get(`${repos_url}`)
-      .then(response => {
-        props.onUserSelection(response.data);
-      })
-      .catch(error => { throw error; });
-  };
-
-  /**
    * @constant
    * Mapea los resultados de lo búsqueda de usuarios
    * en un listado con información detallada.
@@ -40,7 +24,7 @@ const UsersList = props => {
       <LazyLoad height={95} key={user.id} once>
         <li
           user={user}
-          onClick={() => showUserPage(user)}
+          onClick={() => props.onUserSelection(user.repos_url)}
           title={user.login}
           className="userslist__item"
         >
