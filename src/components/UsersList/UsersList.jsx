@@ -10,6 +10,7 @@ import LazyLoad from 'react-lazyload';
  */
 const UsersList = props => {
   /**
+   * @constant
    * Usuarios provistos por App
    */
   const { users } = props;

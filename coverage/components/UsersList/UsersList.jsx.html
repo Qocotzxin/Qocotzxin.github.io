@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">57.14% </span>
+        <span class="strong">66.67% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>4/7</span>
+        <span class='fraction'>4/6</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">40% </span>
+        <span class="strong">33.33% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/5</span>
+        <span class='fraction'>1/3</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">57.14% </span>
+        <span class="strong">66.67% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>4/7</span>
+        <span class='fraction'>4/6</span>
       </div>
     </div>
   </div>
@@ -95,8 +95,23 @@
 50
 51
 52
-53</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+53
+54
+55
+56
+57
+58
+59</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -105,7 +120,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -129,6 +145,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -142,70 +159,71 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import LazyLoad from 'react-lazyload';
 &nbsp;
-class UsersList extends Component {
-  constructor(props) {
-    super(props);
-  }
+/**
+ * @function
+ * @param {*} props
+ * @returns {JSX}
+ * Cuando recibe los usuarios retorna
+ * un listado con información de cada uno.
+ */
+const UsersList = props =&gt; {
+  /**
+   * @constant
+   * Usuarios provistos por App
+   */
+  const { users } = props;
 &nbsp;
-  render() {
-    const { users } = this.props;
-&nbsp;
-    const usersItems = users.map(<span class="fstat-no" title="function not covered" >us</span>er =&gt; {
-<span class="cstat-no" title="statement not covered" >      return (</span>
-        &lt;LazyLoad height={95} key={user.id} once&gt;
-          &lt;li
-            user={user}
-            onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >this.showUserPage(user)}</span>
-            title={user.login}
-            className="userslist__item"&gt;
-            &lt;div&gt;
-              &lt;img src={user.avatar_url} /&gt;
-            &lt;/div&gt;
-            &lt;div&gt;
-              &lt;p&gt;{user.login}&lt;/p&gt;
-            &lt;/div&gt;
-            &lt;div&gt;
-              &lt;p&gt;{user.score}&lt;/p&gt;
-            &lt;/div&gt;
-          &lt;/li&gt;
-        &lt;/LazyLoad&gt;
-      );
-    });
-&nbsp;
-    return (
-      &lt;div className="userslist"&gt;
-        &lt;div className="userslist__header"&gt;
-          &lt;h5&gt;Avatar&lt;/h5&gt;
-          &lt;h5&gt;Usuario&lt;/h5&gt;
-          &lt;h5&gt;Puntaje&lt;/h5&gt;
-        &lt;/div&gt;
-        &lt;ul className="list-group"&gt;{usersItems}&lt;/ul&gt;
-      &lt;/div&gt;
+  /**
+   * @constant
+   * Mapea los resultados de lo búsqueda de usuarios
+   * en un listado con información detallada.
+   */
+  const usersItems = users.map(<span class="fstat-no" title="function not covered" >us</span>er =&gt; {
+<span class="cstat-no" title="statement not covered" >    return (</span>
+      &lt;LazyLoad height={95} key={user.id} once&gt;
+        &lt;li
+          user={user}
+          onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >props.onUserSelection(user.repos_url)}</span>
+          title={user.login}
+          className="userslist__item"
+        &gt;
+          &lt;div&gt;
+            &lt;img src={user.avatar_url} /&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;p&gt;{user.login}&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;p&gt;{user.score}&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/li&gt;
+      &lt;/LazyLoad&gt;
     );
-  }
+  });
 &nbsp;
-<span class="fstat-no" title="function not covered" >  sh</span>owUserPage({ html_url }) {
-<span class="cstat-no" title="statement not covered" >    window.open(html_url, '_blank');</span>
-  }
-}
+  return (
+    &lt;div className="userslist"&gt;
+      &lt;div className="userslist__header"&gt;
+        &lt;h5&gt;Avatar&lt;/h5&gt;
+        &lt;h5&gt;Usuario&lt;/h5&gt;
+        &lt;h5&gt;Puntaje&lt;/h5&gt;
+      &lt;/div&gt;
+      &lt;ul className="list-group"&gt;{usersItems}&lt;/ul&gt;
+    &lt;/div&gt;
+  );
+};
 &nbsp;
-export default hot(module)(UsersList);
+export default UsersList;
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Oct 31 2018 23:23:56 GMT-0300 (Argentina Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Nov 20 2018 23:27:57 GMT-0300 (Argentina Standard Time)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>

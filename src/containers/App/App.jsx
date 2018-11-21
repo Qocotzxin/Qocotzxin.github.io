@@ -5,6 +5,7 @@ import axios from 'axios';
 import { debounce } from 'lodash';
 import { RiseLoader } from 'react-spinners';
 import ReposList from '../../components/ReposList/ReposList';
+import SweetAlert from 'sweetalert-react';
 
 /**
  * @class
@@ -33,7 +34,7 @@ class App extends Component {
    */
   constructor(props) {
     super(props);
-    this.state = { users: [], loading: false, repos: [] };
+    this.state = { users: [], loading: false, repos: [], alert: false };
     this.githubUserSearch = this.githubUserSearch.bind(this);
   }
 
@@ -87,6 +88,12 @@ class App extends Component {
     this.getRepos(repos_url);
   };
 
+  showUsers = () => {
+    if (this.isMounted) {
+      this.setState({ repos: [] });
+    }
+  };
+
   /**
    * @function
    * @param {string} repos_url
@@ -99,6 +106,10 @@ class App extends Component {
       .then(response => {
         if (this.isMounted) {
           this.setState({ loading: false, repos: response.data });
+        }
+
+        if (!response.data.length) {
+          this.setState({ alert: true });
         }
       })
       .catch(error => {
@@ -138,10 +149,16 @@ class App extends Component {
                 users={this.state.users}
                 onUserSelection={this.showRepos}
               />
+              <SweetAlert
+                show={this.state.alert}
+                title="Ups..."
+                text="Este usuario no tiene repositorios"
+                onConfirm={() => this.setState({ alert: false })}
+              />
             </div>
           );
         } else {
-          return <ReposList data={this.state.repos} />;
+          return <ReposList data={this.state.repos} onBack={this.showUsers} />;
         }
       }
 
