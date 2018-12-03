@@ -4,9 +4,8 @@ import UsersList from '../../components/UsersList/UsersList';
 import axios from 'axios';
 import { debounce } from 'lodash';
 import { RiseLoader } from 'react-spinners';
-import ReposList from '../../components/ReposList/ReposList';
 import SweetAlert from 'sweetalert-react';
-
+import { Redirect } from 'react-router-dom';
 /**
  * @class
  * Contenedor general de la aplicación
@@ -29,12 +28,23 @@ class App extends Component {
    * @constructor
    * @param {*} props
    * Inicializa el estado { users, loading } del componente.
-   * { users } contiene los usuarios devueltos de la búsuqeda y
-   * { loading } determina la aparición del spinner.
+   * { users } contiene los usuarios devueltos de la búsqueda,
+   * { loading } determina la aparición del spinner
+   * durante la búsqueda de usuario y { loadingRepos } muestra
+   * el spinner durante la búsqueda de los repositorios
    */
   constructor(props) {
     super(props);
-    this.state = { users: [], loading: false, repos: [], alert: false };
+    this.state = {
+      users:
+        this.props.location && this.props.location.state
+          ? this.props.location.state.users
+          : [],
+      loading: false,
+      loadingRepos: false,
+      repos: [],
+      alert: false
+    };
     this.githubUserSearch = this.githubUserSearch.bind(this);
   }
 
@@ -48,6 +58,7 @@ class App extends Component {
 
   /**
    * @function
+   * @param {string} term
    * @returns {void}
    * Cambia el estado a { loading: true } e invoca
    * el método de búsqueda con parámetro
@@ -59,6 +70,7 @@ class App extends Component {
 
   /**
    * @method
+   * @param {string} term
    * @returns {void}
    * Ejecuta la búsqueda de usuarios de github
    * y modifica el estado {users, loading}
@@ -80,32 +92,38 @@ class App extends Component {
       });
   }
 
+  /**
+   * @function
+   * @param {string} repos_url
+   * @returns {void}
+   * Cambia el estado a { loading: true, loadingRepos: true } e invoca
+   * el método de búsqueda de repositorios con parámetro
+   */
   showRepos = repos_url => {
     if (this.isMounted) {
-      this.setState({ loading: true });
+      this.setState({ loading: true, loadingRepos: true });
     }
 
     this.getRepos(repos_url);
   };
 
-  showUsers = () => {
-    if (this.isMounted) {
-      this.setState({ repos: [] });
-    }
-  };
-
   /**
    * @function
    * @param {string} repos_url
+   * @returns {void}
    * Realiza la búsqueda de repositorios del usuario
-   * y los comunica al padre (App)
+   * y los comunica al hijo (ReposList) mediante la redirección
    */
   getRepos = repos_url => {
     return axios
       .get(`${repos_url}`)
       .then(response => {
         if (this.isMounted) {
-          this.setState({ loading: false, repos: response.data });
+          this.setState({
+            loading: false,
+            loadingRepos: false,
+            repos: response.data
+          });
         }
 
         if (!response.data.length) {
@@ -119,17 +137,20 @@ class App extends Component {
 
   /**
    * @function
-   * @returns {void}
+   * @returns {JSX}
    * Retorna el contenido de la aplicación que incluye
    * SearchBar (barra de búsqueda), RiseLoader (spinner),
    * UsersList (lista de usuarios si hay resultados) y
-   * ReposList (lista de repositorios del usuario seleccionado)
+   * SweetAlert (alerta que informa si no hay repositorios)
+   * y un Redirect al listado de repositorios (en caso de haber)
    */
   render = () => {
     if (this.state.loading) {
       return (
         <div className="app">
-          <SearchBar onSearchTermChange={this.setSearch} />
+          {!this.state.loadingRepos ? (
+            <SearchBar onSearchTermChange={this.setSearch} />
+          ) : null}
           <RiseLoader
             className={'spinner'}
             sizeUnit={'px'}
@@ -158,7 +179,15 @@ class App extends Component {
             </div>
           );
         } else {
-          return <ReposList data={this.state.repos} onBack={this.showUsers} />;
+          return (
+            <Redirect
+              to={{
+                pathname: '/repos',
+                state: { data: this.state.repos, users: this.state.users }
+              }}
+              push
+            />
+          );
         }
       }
 

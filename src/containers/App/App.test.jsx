@@ -26,7 +26,7 @@ new MockAdapter(axios)
     items: startsWith(users[0].login, searchTerm) ? users : []
   });
 
-describe('Objetivo: verificar comportamiento del componente', () => {
+describe('Objetivo: verificar comportamiento del componente ', () => {
   test('El componente App es creado', () => {
     expect(app).toBeTruthy();
   });
@@ -69,5 +69,45 @@ describe('Objetivo: verificar los cambios de estado', () => {
         expect(app.state('users').length).toBeFalsy();
       })
       .catch();
+  });
+});
+
+describe('Objetivo: verificar los cambios de estado', () => {
+  test('componentDidMount es llamado', () => {
+    const componentDidMount = jest.fn();
+
+    class TestDidMount extends App {
+      constructor(props) {
+        super(props);
+        this.componentDidMount = componentDidMount;
+      }
+
+      render() {
+        return <App />;
+      }
+    }
+
+    shallow(<TestDidMount />);
+    expect(componentDidMount.mock.calls.length).toBe(1);
+  });
+
+  test('componentWillUnmount es llamado', () => {
+    const componentWillUnmount = jest.fn();
+
+    class TestWillUnmount extends App {
+      constructor(props) {
+        super(props);
+        this.componentWillUnmount = componentWillUnmount;
+      }
+
+      render() {
+        return <App />;
+      }
+    }
+
+    const wrapper = shallow(<TestWillUnmount />);
+
+    wrapper.unmount();
+    expect(componentWillUnmount.mock.calls.length).toBe(1);
   });
 });

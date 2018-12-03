@@ -5,6 +5,12 @@ import React, { Component } from 'react';
  * Input que dispara la búsqueda de usuarios de Github
  */
 class SearchBar extends Component {
+  
+  /**
+   * @property {boolean}
+   * Determina si el component está en un ciclo de vida activo
+   * para evitar leaks con los cambios de estado.
+   */
   isMounted = false;
 
   /**
@@ -28,7 +34,7 @@ class SearchBar extends Component {
 
   /**
    * @function
-   * @returns {void}
+   * @returns {JSX}
    * Retorna el html del componente
    */
   render = () => {
