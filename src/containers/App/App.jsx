@@ -19,12 +19,6 @@ class App extends Component {
   isMounted = false;
 
   /**
-   * @property {void}
-   * Después de 0,5 segundos ejecuta la función githubSearch.
-   */
-  search = debounce(this.githubUserSearch, 500);
-
-  /**
    * @constructor
    * @param {*} props
    * Inicializa el estado { users, loading } del componente.
@@ -67,6 +61,12 @@ class App extends Component {
     this.setState({ loading: true });
     this.search(term);
   };
+
+  /**
+   * @property {void}
+   * Después de 0,5 segundos ejecuta la función githubSearch.
+   */
+  search = debounce(this.githubUserSearch, 500);
 
   /**
    * @method
@@ -179,6 +179,7 @@ class App extends Component {
             </div>
           );
         } else {
+          console.log(this.state);
           return (
             <Redirect
               to={{

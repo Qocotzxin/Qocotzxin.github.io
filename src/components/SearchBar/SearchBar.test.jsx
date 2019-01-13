@@ -12,6 +12,7 @@ const searchBar = shallow(
   <SearchBar onSearchTermChange={onSearchTermChange} />
 );
 const initialState = searchBar.state('term');
+const mockInputChange = jest.spyOn(SearchBar.prototype, 'onInputChange');
 
 describe('Objetivo: verificar comportamiento del componente', () => {
   test('El componente SearchBar es creado', () => {
@@ -32,5 +33,10 @@ describe('Objetivo: verificar comportamiento del estado', () => {
     searchBar.find('input').simulate('change', mockedEvent);
     expect(searchBar.state('term').length).toBeGreaterThan(initialState.length);
     expect(searchBar.state('term')).toBe('a');
+  });
+
+  test('Si escribo algo en el buscador, la funcion onInputChange se ejecuta al menos una vez', () => {
+    searchBar.find('input').simulate('change', mockedEvent);
+    expect(mockInputChange).toBeCalled();
   });
 });

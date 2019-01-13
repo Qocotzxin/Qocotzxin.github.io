@@ -6,10 +6,17 @@ import App from './App';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { startsWith } from 'lodash';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import UsersList from '../../components/UsersList/UsersList';
+import RiseLoader from 'react-spinners';
+import SweetAlert from 'sweetalert-react';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
-const app = shallow(<App />);
+const options = {
+  disableLifecycleMethods: false
+};
+let app = shallow(<App />, options);
 const initialState = app.state('users');
 let searchTerm = 'Qoco';
 const users = [
@@ -18,7 +25,7 @@ const users = [
   }
 ];
 
-new MockAdapter(axios)
+new MockAdapter(axios, { delayResponse: 2000 })
   .onGet(
     `https://api.github.com/search/users?q=${searchTerm}+in:login+in:fullname+in:email`
   )
@@ -26,23 +33,58 @@ new MockAdapter(axios)
     items: startsWith(users[0].login, searchTerm) ? users : []
   });
 
-describe('Objetivo: verificar comportamiento del componente ', () => {
+/**
+ * Antes de correr cada test monta el componente
+ */
+beforeEach(() => {
+  app = shallow(<App />, options);
+});
+
+/**
+ * Después de correr cada test desmonta el componente
+ */
+afterEach(() => {
+  app.unmount();
+});
+
+describe('Objetivo: verificar las piezas del componente ', () => {
   test('El componente App es creado', () => {
     expect(app).toBeTruthy();
   });
 
   test('El componente App renderiza el component SearchBar', () => {
-    expect(app.find('SearchBar')).toBeTruthy();
+    expect(app.find(SearchBar)).toBeTruthy();
   });
 
-  test('Si la búsqueda tiene resultados, se renderiza el component UsersList', () => {
-    app
-      .instance()
-      .githubUserSearch(searchTerm)
-      .then(app => {
-        expect(app.find('UsersList')).toBeTruthy();
-      })
-      .catch();
+  test('El componente App renderiza el component SweetAlert', () => {
+    expect(app.find(SweetAlert)).toBeTruthy();
+  });
+
+  test('El componente App renderiza el component RiseLoader', () => {
+    expect(app.find(RiseLoader)).toBeTruthy();
+  });
+
+  test('El componente App renderiza el component UsersList', () => {
+    expect(app.find(UsersList)).toBeTruthy();
+  });
+});
+
+describe('Objetivo: verificar los comportamientos basados en cambios de estado', () => {
+  test('Si el estado loading es false el spinner no se debe renderizar', () => {
+    app.setState({ loading: false });
+    app.update();
+    expect(app.html()).not.toContain(
+      '<h2 class="search__title">Buscador de usuarios de Github</h2>'
+    );
+  });
+});
+
+describe('Objetivo: verificar las funciones', () => {
+  test('Si hay un cambio en SearchBar, se ejecuta la búsqueda de usuarios', () => {
+    app.instance().search = jest.fn();
+    app.update();
+    app.instance().setSearch(searchTerm);
+    expect(app.instance().search).toBeCalledWith(searchTerm);
   });
 });
 
@@ -72,26 +114,18 @@ describe('Objetivo: verificar los cambios de estado', () => {
   });
 });
 
-describe('Objetivo: verificar los cambios de estado', () => {
-  test('componentDidMount es llamado', () => {
-    const componentDidMount = jest.fn();
-
-    class TestDidMount extends App {
-      constructor(props) {
-        super(props);
-        this.componentDidMount = componentDidMount;
-      }
-
-      render() {
-        return <App />;
-      }
-    }
-
-    shallow(<TestDidMount />);
-    expect(componentDidMount.mock.calls.length).toBe(1);
+describe('Objetivo: verificar la propiedad isMounted en los ciclos de vida', () => {
+  test('La propiedad isMounted pasa a tener valor true durante el ciclo didMount', () => {
+    expect(app.instance().isMounted).toBeTruthy();
   });
 
-  test('componentWillUnmount es llamado', () => {
+  test('componentWillUnmount es llamado, por ende la propiedad isMounted cambia a false', () => {
+    /**
+     * Dado que no se puede testear una propiedad
+     * que no existe (es decir una vez que el componente
+     * se desmonta) se verifica que el ciclo de vida
+     * sea llamado.
+     */
     const componentWillUnmount = jest.fn();
 
     class TestWillUnmount extends App {

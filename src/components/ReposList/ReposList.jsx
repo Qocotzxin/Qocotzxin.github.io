@@ -4,13 +4,6 @@ import { Redirect } from 'react-router-dom';
 
 class ReposList extends Component {
   /**
-   * @property {boolean}
-   * Determina si el component está en un ciclo de vida activo
-   * para evitar leaks con los cambios de estado.
-   */
-  isMounted = false;
-
-  /**
    * @constructor
    * @param {*} props
    * Inicializa el estado { users, data, redirection } del componente.
@@ -22,8 +15,8 @@ class ReposList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: this.props.location.state ? this.props.location.state.users : [],
-      data: this.props.location.state ? this.props.location.state.data : [],
+      users: this.props.location ? this.props.location.state.users : [],
+      data: this.props.location ? this.props.location.state.data : [],
       redirection: false
     };
   }
@@ -34,18 +27,8 @@ class ReposList extends Component {
    * Modifica el estado {redirection}
    */
   onBack = () => {
-    if (this.isMounted) {
-      this.setState({ redirection: true });
-    }
+    this.setState({ redirection: true });
   };
-
-  componentDidMount() {
-    this.isMounted = true;
-  }
-
-  componentWillUnmount() {
-    this.isMounted = false;
-  }
 
   /**
    * @function
