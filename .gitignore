@@ -4,7 +4,7 @@ node_modules/
 
 # Ignorar code coverage
 
-# coverage/
+coverage/
 
 # Ignorar dist
 
