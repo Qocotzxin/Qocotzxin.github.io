@@ -12,13 +12,6 @@ import { Redirect } from 'react-router-dom';
  */
 class App extends Component {
   /**
-   * @property {boolean}
-   * Determina si el component está en un ciclo de vida activo
-   * para evitar leaks con los cambios de estado.
-   */
-  isMounted = false;
-
-  /**
    * @constructor
    * @param {*} props
    * Inicializa el estado { users, loading } del componente.
@@ -31,6 +24,7 @@ class App extends Component {
     super(props);
     this.state = {
       users:
+        // Se compara location y location.state porque sino los tests no corren
         this.props.location && this.props.location.state
           ? this.props.location.state.users
           : [],
@@ -40,14 +34,6 @@ class App extends Component {
       alert: false
     };
     this.githubUserSearch = this.githubUserSearch.bind(this);
-  }
-
-  componentDidMount() {
-    this.isMounted = true;
-  }
-
-  componentWillUnmount() {
-    this.isMounted = false;
   }
 
   /**
@@ -81,14 +67,10 @@ class App extends Component {
         `https://api.github.com/search/users?q=${term}+in:login+in:fullname+in:email`
       )
       .then(response => {
-        if (this.isMounted) {
-          this.setState({ users: response.data.items, loading: false });
-        }
+        this.setState({ users: response.data.items, loading: false });
       })
       .catch(() => {
-        if (this.isMounted) {
-          this.setState({ users: [], loading: false });
-        }
+        this.setState({ users: [], loading: false });
       });
   }
 
@@ -100,9 +82,7 @@ class App extends Component {
    * el método de búsqueda de repositorios con parámetro
    */
   showRepos = repos_url => {
-    if (this.isMounted) {
-      this.setState({ loading: true, loadingRepos: true });
-    }
+    this.setState({ loading: true, loadingRepos: true });
 
     this.getRepos(repos_url);
   };
@@ -118,19 +98,21 @@ class App extends Component {
     return axios
       .get(`${repos_url}`)
       .then(response => {
-        if (this.isMounted) {
-          this.setState({
-            loading: false,
-            loadingRepos: false,
-            repos: response.data
-          });
-        }
+        this.setState({
+          loading: false,
+          loadingRepos: false,
+          repos: response.data
+        });
 
         if (!response.data.length) {
           this.setState({ alert: true });
         }
       })
       .catch(error => {
+        this.setState({
+          loading: false,
+          loadingRepos: false
+        });
         throw error;
       });
   };
@@ -179,7 +161,6 @@ class App extends Component {
             </div>
           );
         } else {
-          console.log(this.state);
           return (
             <Redirect
               to={{
