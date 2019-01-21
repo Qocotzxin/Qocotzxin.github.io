@@ -11,6 +11,7 @@ class SearchBar extends Component {
    * Inicializa el estado { term } del componente.
    * { term } contiene el string ingresado para comenzar la búsqueda.
    */
+  /* istanbul ignore next */
   constructor(props) {
     super(props);
     this.state = { term: '' };

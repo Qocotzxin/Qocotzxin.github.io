@@ -15,16 +15,16 @@ class App extends Component {
    * @constructor
    * @param {*} props
    * Inicializa el estado { users, loading } del componente.
-   * { users } contiene los usuarios devueltos de la búsqueda,
+   * { users } contiene los usuarios devueltos de la búsqueda (o de la redirección),
    * { loading } determina la aparición del spinner
    * durante la búsqueda de usuario y { loadingRepos } muestra
    * el spinner durante la búsqueda de los repositorios
    */
+  /* istanbul ignore next */
   constructor(props) {
     super(props);
     this.state = {
       users:
-        // Se compara location y location.state porque sino los tests no corren
         this.props.location && this.props.location.state
           ? this.props.location.state.users
           : [],

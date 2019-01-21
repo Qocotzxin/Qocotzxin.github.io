@@ -12,6 +12,7 @@ class ReposList extends Component {
    * repositorios del usuario seleccionado y {redirect} determina
    * la redirección a App
    */
+  /* istanbul ignore next */
   constructor(props) {
     super(props);
     this.state = {

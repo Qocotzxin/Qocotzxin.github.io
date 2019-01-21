@@ -9,6 +9,13 @@ import LazyLoad from 'react-lazyload';
  * un listado con información de cada uno.
  */
 class UsersList extends Component {
+  /**
+   * @constructor
+   * @param {*} props
+   * Inicializa el estado { users } del componente.
+   * { users } contiene la lista de usuarios de la búsqueda.
+   */
+  /* istanbul ignore next */
   constructor(props) {
     super(props);
     this.state = { users: this.props.users };
