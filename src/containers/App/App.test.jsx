@@ -5,7 +5,7 @@ import EnzymeAdapter from 'enzyme-adapter-react-16';
 import App from './App';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { startsWith } from 'lodash';
+import startsWith from 'lodash/startsWith';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import UsersList from '../../components/UsersList/UsersList';
 import SweetAlert from 'sweetalert-react';

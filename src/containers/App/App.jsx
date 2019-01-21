@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import UsersList from '../../components/UsersList/UsersList';
 import axios from 'axios';
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 import { RiseLoader } from 'react-spinners';
 import SweetAlert from 'sweetalert-react';
 import { Redirect } from 'react-router-dom';

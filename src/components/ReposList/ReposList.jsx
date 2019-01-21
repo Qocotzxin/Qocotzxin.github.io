@@ -1,4 +1,3 @@
-import moment from 'moment';
 import React, { Fragment, Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
@@ -47,7 +46,7 @@ class ReposList extends Component {
             </div>
             <div className="card-body">
               <p className="card-text">
-                Creado el: {moment(repo.created_at).format('DD/MM/YYYY')}
+                Creado el: {new Date(repo.created_at).toLocaleDateString()}
               </p>
               <p className="card-text">Forks: {repo.forks}</p>
               <p className="card-text">Watchers: {repo.watchers}</p>
